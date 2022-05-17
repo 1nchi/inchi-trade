@@ -52,7 +52,7 @@ describe("InchiTrade", function () {
   });
 
   beforeEach(async function () {
-    pool = new Pool(hre.waffle.provider, {
+    pool = new Pool(ethers.provider, {
       POOL: CONTRACTS_ADDRESSES.polygon.aavePool,
       WETH_GATEWAY: CONTRACTS_ADDRESSES.polygon.wethGateway,
     });
@@ -126,10 +126,19 @@ describe("InchiTrade", function () {
           deadline,
         });
 
+        console.log(JSON.stringify(JSON.parse(dataToSign), null, 2));
+
+
         const signature = await ethers.provider.send("eth_signTypedData_v4", [
           wallet.address,
           dataToSign,
         ]);
+
+        console.log(ethSigUtil.recoverTypedSignature_v4({data: JSON.parse(dataToSign), sig: signature}));
+        console.log(wallet.address);
+
+        console.log(signature);
+
 
         const txs = await pool.supplyWithPermit({
           user: wallet.address,
@@ -137,7 +146,6 @@ describe("InchiTrade", function () {
           amount,
           deadline,
           signature,
-          onBehalfOf: wallet.address,
         });
 
         try {
