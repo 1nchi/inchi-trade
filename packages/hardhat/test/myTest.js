@@ -140,18 +140,11 @@ describe("InchiTrade", function () {
           onBehalfOf: wallet.address,
         });
 
-
         try {
           const extendedTxData = await txs[0].tx();
         } catch (e) {
           console.log('error:', e);
         }
-        console.log(extendedTxData);
-        const { from, ...txData } = extendedTxData;
-        const txResponse = await wallet.sendTransaction({
-          ...txData,
-          value: txData.value ? ethers.BigNumber.from(txData.value) : undefined,
-        });
 
         return true;
       });
