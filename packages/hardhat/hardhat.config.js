@@ -74,19 +74,19 @@ module.exports = {
         url: `https://polygon-mainnet.g.alchemy.com/v2/${process.env.POLYGON_ALCHEMY_API_KEY}`,
       },
     },
-    // hardhat: {
-    //   chainId: 137,
-    //   forking: {
-    //     blockNumber: 28562942,
-    //     url: `https://polygon-mainnet.g.alchemy.com/v2/${process.env.POLYGON_ALCHEMY_API_KEY}`,
-    //   },
-    // },
     hardhat: {
+      chainId: 137,
       forking: {
-        blockNumber: 14823044,
-        url: `https://eth-mainnet.alchemyapi.io/v2/${process.env.MAINNET_ALCHEMY_API_KEY}`,
+        blockNumber: 28562942,
+        url: `https://polygon-mainnet.g.alchemy.com/v2/${process.env.POLYGON_ALCHEMY_API_KEY}`,
       },
     },
+    // hardhat: {
+    //   forking: {
+    //     blockNumber: 14823044,
+    //     url: `https://eth-mainnet.alchemyapi.io/v2/${process.env.MAINNET_ALCHEMY_API_KEY}`,
+    //   },
+    // },
     localhost: {
       url: "http://localhost:8545",
       /*      
